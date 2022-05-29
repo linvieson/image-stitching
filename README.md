@@ -32,7 +32,7 @@ Input **H** if you want to stitch the images horizontally, or **V** if you want 
 Path to image:
 ```
 
-Enter the path to the image, press enter, input the next path, and so on. When you finish inputting the images, press enter one more time. The program will start to work. In some time, the final stitched picture will be displayed on the screen, and saved on your computer by path `picture{i}.jpg`, with i being the largest index.
+Enter the path to the image, press enter, input the next path, and so on. When you finish inputting the images, press enter one more time. The program will start to work. In some time, the final stitched picture will be displayed on the screen, and saved on your computer as `panorama.jpg` into the same folder.
 
 
 ## Results
