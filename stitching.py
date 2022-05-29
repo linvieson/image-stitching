@@ -147,12 +147,11 @@ def main(argv1, argv2, index, rotate=False):
     return f'picture{index}.jpg'
 
 
-def clean_files(counter):
+def clear_files(counter):
     """
     Deletes unnecessary intermediate files.
     """
     shutil.copyfile(f'picture{counter - 1}.jpg', 'panorama.jpg')
-
 
     for index in range(counter):
         if os.path.exists(f'picture{index}.jpg'):
@@ -180,5 +179,5 @@ if __name__ == '__main__':
     imgplot = plt.imshow(img)
     plt.show()
 
-    clean_files(counter)
+    clear_files(counter)
 
