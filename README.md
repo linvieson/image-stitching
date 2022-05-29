@@ -1,5 +1,4 @@
 # Image Stitching
-### Linear Algebra Coursework Project
 
 ### Aim of the project
 The aim is to implement an algorithm that composites multiple overlapping images captured from different viewing positions into one natural-looking panorama, using linear algebra principles and algorithms. It will help obtain a full-range view in a single photo, excluding the necessity of manual stitching in photo editors. The final goal is to create a program that receives some images of an object/surface/scene as an input and outputs a single picture of that
