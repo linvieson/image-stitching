@@ -44,7 +44,7 @@ The result of the project is an image stitching algorithm. By inputting the path
 
 - [Alina Voronina](https://github.com/linvieson)
 - [Viktoriia Maksymiuk](https://github.com/Vihtoriaaa)
-- [Yulia Maksymiuk](https://github.com/juliaaz)
+- [Yuliia Maksymiuk](https://github.com/juliaaz)
 
 
 ## Lisence
