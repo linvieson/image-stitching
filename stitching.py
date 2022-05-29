@@ -43,7 +43,7 @@ class Image_Stitching():
                 continue
 
 
-    def feature_matching(self, img1, img2):
+    def feature_matching(self, img1, img2, rotate):
         """
         Function to perform feature matching. Computes matches for images
         and outputs matching result on the picture. Returns Homography matrix
@@ -72,6 +72,10 @@ class Image_Stitching():
         # draw matches on picture.
         img3 = cv2.drawMatches(img1, kp1, img2, kp2, self.matches1to2, None, \
             flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
+        
+        if rotate:
+            img3 = cv2.rotate(img3, cv2.ROTATE_90_COUNTERCLOCKWISE)
+
         cv2.imwrite('matching.jpg', img3)
 
         if len(self.good_points) > self.min_match:
@@ -87,8 +91,8 @@ class Image_Stitching():
         return H
 
 
-    def stitch(self, img1, img2):
-        H = self.feature_matching(img1, img2)
+    def stitch(self, img1, img2, rotate):
+        H = self.feature_matching(img1, img2, rotate)
         width = img1.shape[1] + img2.shape[1]
         height = max(img1.shape[0], img2.shape[0])
         result = cv2.warpPerspective(img2, H,  (width, height))
@@ -131,7 +135,7 @@ def main(argv1, argv2, index, rotate=False):
         img1 = cv2.rotate(img1, ROTATE_90_CLOCKWISE)
         img2 = cv2.rotate(img2, ROTATE_90_CLOCKWISE)
 
-    final = Image_Stitching().stitch(img1, img2)
+    final = Image_Stitching().stitch(img1, img2, rotate)
 
     if rotate:
         final = cv2.rotate(final, cv2.ROTATE_90_COUNTERCLOCKWISE)
