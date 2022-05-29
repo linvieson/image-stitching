@@ -23,7 +23,7 @@ class Image_Stitching():
         self.smoothing_window_size = 800
         self.matches1to2 = []
         self.good_points = []
-        self.doCrossCheck = crossCheck #can be changed
+        self.doCrossCheck = crossCheck #can be changed depending on whether the user wants to do the CrossCheck validation
 
 
     def crossCheck(self, first_matches, second_matches):
@@ -50,7 +50,7 @@ class Image_Stitching():
         """
         Function to perform feature matching. Computes matches for images
         and outputs matching result on the picture. Returns Homography matrix
-        for futher calculations (Ransac).
+        for futher calculations (RANSAC).
         """
         kp1, des1 = self.sift.detectAndCompute(img1, None)
         kp2, des2 = self.sift.detectAndCompute(img2, None)
@@ -61,7 +61,6 @@ class Image_Stitching():
         
         #check whether to perform CrossCheck validation.
         if self.doCrossCheck is True:
-            matcher = KnnClassifier()
             #find matches for image2 keypoints from image1 keypoints.
             second_matches = matcher.knnMatch(des2, des1, k=2)
             #perform CrossCheck validation.
@@ -78,7 +77,8 @@ class Image_Stitching():
         
         if rotate:
             img3 = cv2.rotate(img3, cv2.ROTATE_90_COUNTERCLOCKWISE)
-
+        
+        # write an image with matching output
         cv2.imwrite('matching.jpg', img3)
 
         if len(self.good_points) > self.min_match:
@@ -95,6 +95,13 @@ class Image_Stitching():
 
 
     def stitch(self, img1, img2, rotate):
+        """
+        Function to perform image stitching algorithm. Calls the function
+        feature_matching to perform feature matching algorithm (KNN & Lowe's ratio
+        test & CrossCheck (optional)). After that, Homography estimation with
+        the RANSAC algorithm is called, resulting in further outputting of
+        the final panorama picture. 
+        """
         H = self.feature_matching(img1, img2, rotate)
         width = img1.shape[1] + img2.shape[1]
         height = max(img1.shape[0], img2.shape[0])
@@ -162,6 +169,9 @@ def clear_files(counter):
 
 
 if __name__ == '__main__':
+    """
+    Start the process!! :)
+    """
     rotation = input('Input H if you want to stitch images horizintally,\
  V if vertically: ')
     rotate = True if rotation == 'V' else False
@@ -180,4 +190,3 @@ if __name__ == '__main__':
     plt.show()
 
     clear_files(counter)
-
