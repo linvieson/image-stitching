@@ -3,6 +3,9 @@ from cv2 import ROTATE_90_CLOCKWISE
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import numpy as np
+import os
+import shutil
+
 from knn import KnnClassifier
 from ransac import *
 
@@ -144,6 +147,21 @@ def main(argv1, argv2, index, rotate=False):
     return f'picture{index}.jpg'
 
 
+def clean_files(counter):
+    """
+    Deletes unnecessary intermediate files.
+    """
+    shutil.copyfile(f'picture{counter - 1}.jpg', 'panorama.jpg')
+
+
+    for index in range(counter):
+        if os.path.exists(f'picture{index}.jpg'):
+            os.remove(f'picture{index}.jpg')
+    
+    if os.path.exists('matching.jpg'):
+        os.remove('matching.jpg')
+
+
 if __name__ == '__main__':
     rotation = input('Input H if you want to stitch images horizintally,\
  V if vertically: ')
@@ -161,4 +179,6 @@ if __name__ == '__main__':
     img = mpimg.imread(images[-1])
     imgplot = plt.imshow(img)
     plt.show()
+
+    clean_files(counter)
 
