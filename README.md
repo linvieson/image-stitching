@@ -1,7 +1,7 @@
 # Image Stitching
 
 ## Aim of the project
-The aim is to implement an algorithm that composites multiple overlapping images captured from different viewing positions into one natural-looking panorama, using linear algebra principles and algorithms. It will help obtain a full-range view in a single photo, excluding the necessity of manual stitching in photo editors. The final goal is to create a program that receives some images of an object/surface/scene as an input and outputs a single picture of that
+The aim is to implement an algorithm that composites multiple overlapping images captured from different viewing positions into one natural-looking panorama, using linear algebra principles and algorithms. It will help obtain a full-range view in a single photo, excluding the necessity of manual stitching in photo editors. The final goal is to create a program that receives some images of an object/surface/scene as an input and outputs a single picture of that.
 
 ## Implementation
 
@@ -13,7 +13,7 @@ There are three main steps in implementing the image stitching algorithm:
 
 Each step is described more meticulously in the [final report](https://github.com/linvieson/image-stitching/blob/main/reports/Final%20report.pdf). It contains description of Linear Algebra methods and algorithms' pseudocodes.
 
-## Data and implementatino
+## Data description
 
 Several sources were used to execute the algorithm, including own photo materials and open-source images on the Internet. The image stitching algorithm gets a set of two or more images in _jpg_ or _png_ format (specified by the user when entering a path) and outputs one single wide-view panorama stitched from those pictures. Examples of data input and output are presented in the __Results__ section.
 
